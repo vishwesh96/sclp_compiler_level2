@@ -378,8 +378,7 @@ arith_expression:
 	if (NOT_ONLY_PARSE)
 	{
 		Ast * lhs = $2;
-		Ast * ast = new Minus_Ast(lhs,NULL,get_line_number());
-		ast->check_ast();		
+		Ast * ast = new UMinus_Ast(lhs,NULL,get_line_number());
 		$$ = ast;
 	
 	}
@@ -389,9 +388,7 @@ arith_expression:
 	{
 	if (NOT_ONLY_PARSE)
 	{
-		Ast * ast = $2;
-		ast->check_ast();
-		$$ = ast;
+		$$ = $2;
 	}
 	}
 |

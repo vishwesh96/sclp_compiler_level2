@@ -1,5 +1,7 @@
 void main();
 main(){
 float f;
-f = f--1;
+int a;
+a=0;
+a=f;
 }

@@ -81,11 +81,11 @@ bool Assignment_Ast::check_ast()
 	//ADD CODE HERE
 	// std::cout<<lhs->get_data_type()<<"\n"<<rhs->get_data_type()<<std::endl;
 	if(lhs->get_data_type()!=rhs->get_data_type()){ //TODO: if lhs is ass_Ast or arith_Ast or num then show error
-		if(typeid(*rhs)==typeid(Number_Ast<int>) || typeid(*rhs)==typeid(Number_Ast<float>)){	//TODO: so that the same error is show
-			if(rhs->is_value_zero()){
-				return true;
-			}	
-		}	
+		// if(typeid(*rhs)==typeid(Number_Ast<int>) || typeid(*rhs)==typeid(Number_Ast<float>)){	//TODO: so that the same error is show
+		// 	if(rhs->is_value_zero()){
+		// 		return true;
+		// 	}	
+		// }	
 		CHECK_INPUT(CONTROL_SHOULD_NOT_REACH,"Assignment statement data type not compatible", lineno);
 		return false;
 	}
@@ -212,16 +212,16 @@ bool Arithmetic_Expr_Ast::check_ast()
 	// use get_data_type(), typeid()
 	//ADD CODE HERE	
 	if(lhs->get_data_type()!=rhs->get_data_type()){ //TODO:
-		if(typeid(*rhs)==typeid(Number_Ast<int>) || typeid(*rhs)==typeid(Number_Ast<double>)){	//TODO:
-			if(rhs->is_value_zero()){
-				return true;
-			}	
-		}	
-		if(typeid(*lhs)==typeid(Number_Ast<int>) || typeid(*lhs)==typeid(Number_Ast<double>)){	//TODO:
-			if(lhs->is_value_zero()){
-				return true;
-			}	
-		}	
+		// if(typeid(*rhs)==typeid(Number_Ast<int>) || typeid(*rhs)==typeid(Number_Ast<double>)){	//TODO:
+		// 	if(rhs->is_value_zero()){
+		// 		return true;
+		// 	}	
+		// }	
+		// if(typeid(*lhs)==typeid(Number_Ast<int>) || typeid(*lhs)==typeid(Number_Ast<double>)){	//TODO:
+		// 	if(lhs->is_value_zero()){
+		// 		return true;
+		// 	}	
+		// }	
 		CHECK_INPUT(CONTROL_SHOULD_NOT_REACH, "Arithmetic statement data type not compatible", lineno);
 		return false;
 	}
@@ -238,23 +238,23 @@ Plus_Ast::Plus_Ast(Ast * l, Ast * r, int line)
 	rhs = r;
 	ast_num_child = binary_arity;
 	// std::cout<<l->get_data_type()<<"\n"<<r->get_data_type()<<std::endl;
-	if(typeid(*rhs)==typeid(Number_Ast<int>) || typeid(*rhs)==typeid(Number_Ast<double>)){	
-		if(rhs->is_value_zero()){
-			node_data_type = l->get_data_type(); 		
-		}
-		else{
-			node_data_type = l->get_data_type();	//todo	
-		}		
-	}
-	else if(typeid(*lhs)==typeid(Number_Ast<int>) || typeid(*lhs)==typeid(Number_Ast<double>)){	
-		if(lhs->is_value_zero()){
-			node_data_type = r->get_data_type(); 
-		}	
-		else{
-			node_data_type = l->get_data_type();	//todo	
-		}		
-	}
-	else 
+	// if(typeid(*rhs)==typeid(Number_Ast<int>) || typeid(*rhs)==typeid(Number_Ast<double>)){	
+	// 	if(rhs->is_value_zero()){
+	// 		node_data_type = l->get_data_type(); 		
+	// 	}
+	// 	else{
+	// 		node_data_type = l->get_data_type();	//todo	
+	// 	}		
+	// }
+	// else if(typeid(*lhs)==typeid(Number_Ast<int>) || typeid(*lhs)==typeid(Number_Ast<double>)){	
+	// 	if(lhs->is_value_zero()){
+	// 		node_data_type = r->get_data_type(); 
+	// 	}	
+	// 	else{
+	// 		node_data_type = l->get_data_type();	//todo	
+	// 	}		
+	// }
+	// else 
 		node_data_type = l->get_data_type();	//todo	
 	lineno = line;
 }
@@ -277,23 +277,23 @@ Minus_Ast::Minus_Ast(Ast * l, Ast * r, int line)
 	lhs = l;
 	rhs = r;
 	ast_num_child = binary_arity;
-	if(typeid(*rhs)==typeid(Number_Ast<int>) || typeid(*rhs)==typeid(Number_Ast<double>)){	
-		if(rhs->is_value_zero()){
-			node_data_type = l->get_data_type(); 		
-		}
-		else{
-			node_data_type = l->get_data_type();	//todo	
-		}		
-	}
-	else if(typeid(*lhs)==typeid(Number_Ast<int>) || typeid(*lhs)==typeid(Number_Ast<double>)){	
-		if(lhs->is_value_zero()){
-			node_data_type = r->get_data_type(); 
-		}	
-		else{
-			node_data_type = l->get_data_type();	//todo	
-		}		
-	}
-	else 
+	// if(typeid(*rhs)==typeid(Number_Ast<int>) || typeid(*rhs)==typeid(Number_Ast<double>)){	
+	// 	if(rhs->is_value_zero()){
+	// 		node_data_type = l->get_data_type(); 		
+	// 	}
+	// 	else{
+	// 		node_data_type = l->get_data_type();	//todo	
+	// 	}		
+	// }
+	// else if(typeid(*lhs)==typeid(Number_Ast<int>) || typeid(*lhs)==typeid(Number_Ast<double>)){	
+	// 	if(lhs->is_value_zero()){
+	// 		node_data_type = r->get_data_type(); 
+	// 	}	
+	// 	else{
+	// 		node_data_type = l->get_data_type();	//todo	
+	// 	}		
+	// }
+	// else 
 		node_data_type = l->get_data_type();	//todo	
 	lineno = line;
 }
@@ -317,23 +317,23 @@ Mult_Ast::Mult_Ast(Ast * l, Ast * r, int line)
 	rhs = r;
 	ast_num_child = binary_arity;
 		// std::cout<<typeid(*lhs).name()<<"\n"<<typeid(Number_Ast<int>).name()<<std::endl;
-	if(typeid(*rhs).name()==typeid(Number_Ast<int>).name() || typeid(*rhs).name()==typeid(Number_Ast<double>).name()){	
-		if(rhs->is_value_zero()){
-			node_data_type = l->get_data_type(); 		
-		}
-		else{
-			node_data_type = l->get_data_type();	//todo	
-		}
-	}
-	else if(typeid(*lhs).name()==typeid(Number_Ast<int>).name() || typeid(*lhs).name()==typeid(Number_Ast<double>).name()){	
-		if(lhs->is_value_zero()){
-			node_data_type = r->get_data_type(); 
-		}	
-		else{
-			node_data_type = l->get_data_type();	//todo	
-		}
-	}
-	else 
+	// if(typeid(*rhs).name()==typeid(Number_Ast<int>).name() || typeid(*rhs).name()==typeid(Number_Ast<double>).name()){	
+	// 	if(rhs->is_value_zero()){
+	// 		node_data_type = l->get_data_type(); 		
+	// 	}
+	// 	else{
+	// 		node_data_type = l->get_data_type();	//todo	
+	// 	}
+	// }
+	// else if(typeid(*lhs).name()==typeid(Number_Ast<int>).name() || typeid(*lhs).name()==typeid(Number_Ast<double>).name()){	
+	// 	if(lhs->is_value_zero()){
+	// 		node_data_type = r->get_data_type(); 
+	// 	}	
+	// 	else{
+	// 		node_data_type = l->get_data_type();	//todo	
+	// 	}
+	// }
+	// else 
 		node_data_type = l->get_data_type();	//todo	
 	
 	lineno = line;
@@ -357,23 +357,23 @@ Divide_Ast::Divide_Ast(Ast * l, Ast * r, int line)
 	lhs = l;
 	rhs = r;
 	ast_num_child = binary_arity;
-	if(typeid(*rhs).name()==typeid(Number_Ast<int>).name() || typeid(*rhs).name()==typeid(Number_Ast<double>).name()){	
-		if(rhs->is_value_zero()){
-			node_data_type = l->get_data_type(); 		
-		}
-		else{
-			node_data_type = l->get_data_type();	//todo	
-		}		
-	}
-	else if (typeid(*lhs).name()==typeid(Number_Ast<int>).name() || typeid(*lhs).name()==typeid(Number_Ast<double>).name()){	
-		if(lhs->is_value_zero()){
-			node_data_type = r->get_data_type(); 
-		}
-		else{
-			node_data_type = l->get_data_type();	//todo	
-		}			
-	}
-	else 
+	// if(typeid(*rhs).name()==typeid(Number_Ast<int>).name() || typeid(*rhs).name()==typeid(Number_Ast<double>).name()){	
+	// 	if(rhs->is_value_zero()){
+	// 		node_data_type = l->get_data_type(); 		
+	// 	}
+	// 	else{
+	// 		node_data_type = l->get_data_type();	//todo	
+	// 	}		
+	// }
+	// else if (typeid(*lhs).name()==typeid(Number_Ast<int>).name() || typeid(*lhs).name()==typeid(Number_Ast<double>).name()){	
+	// 	if(lhs->is_value_zero()){
+	// 		node_data_type = r->get_data_type(); 
+	// 	}
+	// 	else{
+	// 		node_data_type = l->get_data_type();	//todo	
+	// 	}			
+	// }
+	// else 
 		node_data_type = l->get_data_type();	//todo	
 	lineno = line;
 }

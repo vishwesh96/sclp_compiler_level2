@@ -53,7 +53,13 @@ fl (((({number})\.({number}))|(\.{number})|({number}\.))(([eE][+-]?{number})?))|
 		return Parser::NAME; 
              }
 
-[-+*/\(\);{}] {
+[-+*/] {
+		// std::cout<<"other found "<<matched()<<endl;	
+		store_token_name("ARITHOP");
+		return matched()[0];
+	 }
+
+[\(\);{}] {
 		// std::cout<<"other found "<<matched()<<endl;	
 		store_token_name("META CHAR");
 		return matched()[0];
@@ -63,7 +69,7 @@ fl (((({number})\.({number}))|(\.{number})|({number}\.))(([eE][+-]?{number})?))|
 		// std::cout<<"float value found "<<matched()<<endl;
 		ParserBase::STYPE__ *val = getSval();      
 		val -> float_value = atof(matched().c_str());
-		store_token_name("DOUBLE_NUMBER");
+		store_token_name("FNUM");
 		return Parser::DOUBLE_NUMBER; 
 
 	}

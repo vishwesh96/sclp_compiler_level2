@@ -1,6 +1,7 @@
 void main();
 
 main(){
-int a;
-a=10;
+
+	int a;
+	a=(1+1.0);
 }
