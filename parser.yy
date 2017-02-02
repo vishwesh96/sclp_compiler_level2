@@ -115,6 +115,7 @@ procedure_definition:
 	{
 	if (NOT_ONLY_PARSE)
 	{
+		CHECK_INVARIANT(false,"vishwesh");
 		CHECK_INVARIANT(($1 != NULL), "Procedure name cannot be null");
 		CHECK_INVARIANT((*$1 == "main"), "Procedure name must be main");
 
@@ -327,9 +328,11 @@ arith_expression:
 	{
 	if (NOT_ONLY_PARSE)
 	{
-		Arihtmetic_Expr_Ast * lhs = $1;
-		Arihtmetic_Expr_Ast * rhs = $3;
-			
+		Ast * lhs = $1;
+		Ast * rhs = $3;
+		Ast * ast = new Plus_Ast(lhs,rhs,get_line_number());
+		ast->check_ast();		
+		$$ = ast;
 	}
 	}
 |
@@ -337,6 +340,11 @@ arith_expression:
 	{
 	if (NOT_ONLY_PARSE)
 	{
+		Ast * lhs = $1;
+		Ast * rhs = $3;
+		Ast * ast = new Minus_Ast(lhs,rhs,get_line_number());
+		ast->check_ast();		
+		$$ = ast;
 	
 	}
 	}
@@ -345,6 +353,11 @@ arith_expression:
 	{
 	if (NOT_ONLY_PARSE)
 	{
+		Ast * lhs = $1;
+		Ast * rhs = $3;
+		Ast * ast = new Mult_Ast(lhs,rhs,get_line_number());
+		ast->check_ast();		
+		$$ = ast;
 	
 	}
 	}
@@ -353,6 +366,11 @@ arith_expression:
 	{
 	if (NOT_ONLY_PARSE)
 	{
+		Ast * lhs = $1;
+		Ast * rhs = $3;
+		Ast * ast = new Divide_Ast(lhs,rhs,get_line_number());
+		ast->check_ast();		
+		$$ = ast;
 	
 	}
 	}
@@ -361,6 +379,10 @@ arith_expression:
 	{
 	if (NOT_ONLY_PARSE)
 	{
+		Ast * lhs = $2;
+		Ast * ast = new Minus_Ast(lhs,NULL,get_line_number());
+		ast->check_ast();		
+		$$ = ast;
 	
 	}
 	}
@@ -369,7 +391,9 @@ arith_expression:
 	{
 	if (NOT_ONLY_PARSE)
 	{
-	
+		Ast * ast = $2;
+		ast->check_ast();
+		$$ = ast;
 	}
 	}
 |
@@ -377,7 +401,7 @@ arith_expression:
 	{
 	if (NOT_ONLY_PARSE)
 	{
-	
+		$$ = $1;			
 	}
 	}
 ;
@@ -385,7 +409,7 @@ arith_expression:
                 // SUPPORT binary +, -, *, / operations, unary -, and allow parenthesization
                 // i.e. E -> (E)
                 // Connect the rules with the remaining rules given below
-;
+
 
 operand:
 	arith_expression
@@ -393,6 +417,10 @@ operand:
 	if (NOT_ONLY_PARSE)
 	{
 		//ADD CODE HERE
+		Ast * ast = $1;
+		ast->check_ast();
+		$$ = ast;
+		
 	}
 	}
 ;
@@ -422,6 +450,7 @@ variable:
 	{
 	if (NOT_ONLY_PARSE)
 	{
+		
 		Symbol_Table_Entry * var_table_entry;
 
 		CHECK_INVARIANT(($1 != NULL), "Variable name cannot be null");
