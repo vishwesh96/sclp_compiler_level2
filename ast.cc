@@ -79,6 +79,7 @@ bool Assignment_Ast::check_ast()
 
 	// use typeid(), get_data_type()
 	//ADD CODE HERE
+	// std::cout<<lhs->get_data_type()<<"\n"<<rhs->get_data_type()<<std::endl;
 	if(lhs->get_data_type()!=rhs->get_data_type()){ //TODO: if lhs is ass_Ast or arith_Ast or num then show error
 		if(typeid(*rhs)==typeid(Number_Ast<int>) || typeid(*rhs)==typeid(Number_Ast<float>)){	//TODO: so that the same error is show
 			if(rhs->is_value_zero()){
@@ -105,11 +106,11 @@ void Assignment_Ast::print(ostream & file_buffer)
 
 Name_Ast::Name_Ast(string & name, Symbol_Table_Entry & var_entry, int line)
 {
-
-	CHECK_INVARIANT((variable_symbol_entry->get_variable_name() == name),
-		"Variable's symbol entry is not matching its name");
 	//ADD CODE HERE
 	variable_symbol_entry = &var_entry;
+	CHECK_INVARIANT((variable_symbol_entry->get_variable_name() == name),
+		"Variable's symbol entry is not matching its name");
+
 	node_data_type = var_entry.get_data_type();
 	lineno = line;
 }
@@ -154,6 +155,7 @@ Number_Ast<DATA_TYPE>::Number_Ast(DATA_TYPE number, Data_Type constant_data_type
 	node_data_type = constant_data_type;
 	ast_num_child = zero_arity;	//TODO
 	lineno = line;
+
 }
 
 template <class DATA_TYPE>
@@ -235,6 +237,7 @@ Plus_Ast::Plus_Ast(Ast * l, Ast * r, int line)
 	lhs = l;
 	rhs = r;
 	ast_num_child = binary_arity;
+	// std::cout<<l->get_data_type()<<"\n"<<r->get_data_type()<<std::endl;
 	if(typeid(*rhs)==typeid(Number_Ast<int>) || typeid(*rhs)==typeid(Number_Ast<double>)){	
 		if(rhs->is_value_zero()){
 			node_data_type = l->get_data_type(); 		
@@ -247,6 +250,7 @@ Plus_Ast::Plus_Ast(Ast * l, Ast * r, int line)
 	}
 	else 
 		node_data_type = l->get_data_type();	//todo	
+		// std::cout<<node_data_type<<std::endl;
 	lineno = line;
 }
 
@@ -301,18 +305,20 @@ Mult_Ast::Mult_Ast(Ast * l, Ast * r, int line)
 	lhs = l;
 	rhs = r;
 	ast_num_child = binary_arity;
-	if(typeid(*rhs)==typeid(Number_Ast<int>) || typeid(*rhs)==typeid(Number_Ast<double>)){	
+		// std::cout<<typeid(*lhs).name()<<"\n"<<typeid(Number_Ast<int>).name()<<std::endl;
+	if(typeid(*rhs).name()==typeid(Number_Ast<int>).name() || typeid(*rhs).name()==typeid(Number_Ast<double>).name()){	
 		if(rhs->is_value_zero()){
 			node_data_type = l->get_data_type(); 		
 		}
 	}
-	else if(typeid(*lhs)==typeid(Number_Ast<int>) || typeid(*lhs)==typeid(Number_Ast<double>)){	
+	else if(typeid(*lhs).name()==typeid(Number_Ast<int>).name() || typeid(*lhs).name()==typeid(Number_Ast<double>).name()){	
 		if(lhs->is_value_zero()){
 			node_data_type = r->get_data_type(); 
 		}	
 	}
 	else 
 		node_data_type = l->get_data_type();	//todo	
+	std::cout<<node_data_type<<std::endl;
 	lineno = line;
 }
 
@@ -334,12 +340,12 @@ Divide_Ast::Divide_Ast(Ast * l, Ast * r, int line)
 	lhs = l;
 	rhs = r;
 	ast_num_child = binary_arity;
-	if(typeid(*rhs)==typeid(Number_Ast<int>) || typeid(*rhs)==typeid(Number_Ast<double>)){	
+	if(typeid(*rhs).name()==typeid(Number_Ast<int>).name() || typeid(*rhs).name()==typeid(Number_Ast<double>).name()){	
 		if(rhs->is_value_zero()){
 			node_data_type = l->get_data_type(); 		
 		}
 	}
-	else if (typeid(*lhs)==typeid(Number_Ast<int>) || typeid(*lhs)==typeid(Number_Ast<double>)){	
+	else if (typeid(*lhs).name()==typeid(Number_Ast<int>).name() || typeid(*lhs).name()==typeid(Number_Ast<double>).name()){	
 		if(lhs->is_value_zero()){
 			node_data_type = r->get_data_type(); 
 		}	

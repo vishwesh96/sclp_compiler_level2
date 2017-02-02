@@ -14,66 +14,66 @@ fl (((({number})\.({number}))|(\.{number})|({number}\.))(([eE][+-]?{number})?))|
 
 
 "int"	{
-		printf("int found\n");
+		// printf("int found\n");
 		store_token_name("INTEGER");
-//		return Parser::INTEGER;
+		return Parser::INTEGER;
 	}
 
 "float"	{
-		printf("float found\n");
+		// printf("float found\n");
 		store_token_name("FLOAT");
-//		return Parser::FLOAT;
+		return Parser::FLOAT;
 	}
 
 
 "="	{
-		printf("equal to found\n");
+		// printf("equal to fouqnd\n");
 		store_token_name("ASSIGN_OP");
-//		return Parser::ASSIGN;
+		return Parser::ASSIGN;
 	}
 
 "void"	{
-		printf("void found\n");
+		// printf("void found\n");
 		store_token_name("VOID");
-//		return Parser::VOID;	
+		return Parser::VOID;	
 	}
 
 "return" {
-		printf("return found\n");
+		// printf("return found\n");
 		store_token_name("RETURN");
-//		return Parser::RETURN;
+		return Parser::RETURN;
 	 }
 			
 {identifier} {
-		std::cout<<"identifier found "<<matched()<<endl;
+		// std::cout<<"identifier found "<<matched()<<endl;
 		ParserBase::STYPE__ *val = getSval();      
 		std::string * matched_str = new string(matched()); 	
 		val -> string_value = matched_str;
 		store_token_name("NAME");
-//		return Parser::NAME; 
+		return Parser::NAME; 
              }
 
 [-+*/\(\);{}] {
-		std::cout<<"other found "<<matched()<<endl;	
+		// std::cout<<"other found "<<matched()<<endl;	
 		store_token_name("META CHAR");
-//		return matched()[0];
+		return matched()[0];
 	 }
 
 {fl} 	{
-		std::cout<<"float value found "<<matched()<<endl;
+		// std::cout<<"float value found "<<matched()<<endl;
 		ParserBase::STYPE__ *val = getSval();      
 		val -> float_value = atof(matched().c_str());
 		store_token_name("DOUBLE_NUMBER");
-//		return Parser::DOUBLE_NUMBER; 
+		return Parser::DOUBLE_NUMBER; 
 
 	}
 
 {number} {	
-		std::cout<<"number found "<<matched()<<endl;
+		// std::cout<<"number found "<<matched()<<endl;
 		ParserBase::STYPE__ *val = getSval();      
 	        val -> integer_value = atoi(matched().c_str());
 		store_token_name("NUM");
-//		return Parser::INTEGER_NUMBER; 
+		return Parser::INTEGER_NUMBER; 
    	}
 
 

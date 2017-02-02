@@ -1,4 +1,4 @@
-[parser.yy (info)] Line 497: 
+[parser.yy (info)] Line 494: 
 Production Rules
 (rule precedences determined from %prec or 1st terminal between parentheses):
 1: program ->  declaration_list procedure_definition

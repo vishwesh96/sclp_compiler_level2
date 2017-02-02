@@ -115,7 +115,6 @@ procedure_definition:
 	{
 	if (NOT_ONLY_PARSE)
 	{
-		CHECK_INVARIANT(false,"vishwesh");
 		CHECK_INVARIANT(($1 != NULL), "Procedure name cannot be null");
 		CHECK_INVARIANT((*$1 == "main"), "Procedure name must be main");
 
@@ -149,7 +148,6 @@ procedure_definition:
 	if (NOT_ONLY_PARSE)
 	{
 		Sequence_Ast* seq = $8;
-
 		CHECK_INVARIANT((current_procedure != NULL), "Current procedure cannot be null");
 		CHECK_INVARIANT((seq != NULL), "statement list cannot be null");
 
@@ -417,9 +415,7 @@ operand:
 	if (NOT_ONLY_PARSE)
 	{
 		//ADD CODE HERE
-		Ast * ast = $1;
-		ast->check_ast();
-		$$ = ast;
+		$$ = $1;
 		
 	}
 	}
@@ -450,7 +446,7 @@ variable:
 	{
 	if (NOT_ONLY_PARSE)
 	{
-		
+
 		Symbol_Table_Entry * var_table_entry;
 
 		CHECK_INVARIANT(($1 != NULL), "Variable name cannot be null");
@@ -467,6 +463,7 @@ variable:
 		$$ = new Name_Ast(*$1, *var_table_entry, get_line_number());
 
 		delete $1;
+
 	}
 	}
 ;
