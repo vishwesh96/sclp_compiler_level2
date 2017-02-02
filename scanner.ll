@@ -53,6 +53,12 @@ fl (((({number})\.({number}))|(\.{number})|({number}\.))(([eE][+-]?{number})?))|
 //		return Parser::NAME; 
              }
 
+[-+*/\(\);{}] {
+		std::cout<<"other found "<<matched()<<endl;	
+		store_token_name("META CHAR");
+//		return matched()[0];
+	 }
+
 {fl} 	{
 		std::cout<<"float value found "<<matched()<<endl;
 		ParserBase::STYPE__ *val = getSval();      
@@ -70,11 +76,6 @@ fl (((({number})\.({number}))|(\.{number})|({number}\.))(([eE][+-]?{number})?))|
 //		return Parser::INTEGER_NUMBER; 
    	}
 
-[-+*/\(\);{}] {
-		std::cout<<"other found "<<matched()<<endl;	
-		store_token_name("META CHAR");
-//		return matched()[0];
-	 }
 
 \n    		|
 ";;".*  	|

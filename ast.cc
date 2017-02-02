@@ -23,7 +23,7 @@ Ast::~Ast()
 bool Ast::check_ast()
 {
 	stringstream msg;
-	msg << "No check_ast() function for " << typeid(*this).name();
+	msg << "No check_Ast() function for " << typeid(*this).name();
 	CHECK_INVARIANT(CONTROL_SHOULD_NOT_REACH, msg.str());
 }
 
@@ -79,7 +79,7 @@ bool Assignment_Ast::check_ast()
 
 	// use typeid(), get_data_type()
 	//ADD CODE HERE
-	if(lhs->get_data_type()!=rhs->get_data_type()){ //TODO: if lhs is ass_ast or arith_ast or num then show error
+	if(lhs->get_data_type()!=rhs->get_data_type()){ //TODO: if lhs is ass_Ast or arith_Ast or num then show error
 		if(typeid(*rhs)==typeid(Number_Ast<int>) || typeid(*rhs)==typeid(Number_Ast<float>)){	//TODO: so that the same error is show
 			if(rhs->is_value_zero()){
 				return true;
@@ -148,7 +148,7 @@ void Name_Ast::print(ostream & file_buffer)
 template <class DATA_TYPE>
 Number_Ast<DATA_TYPE>::Number_Ast(DATA_TYPE number, Data_Type constant_data_type, int line)
 {
-	// use Ast_arity from ast.hh
+	// use Ast_arity from Ast.hh
 	//ADD CODE HERE
 	constant = number;
 	node_data_type = constant_data_type;
@@ -235,11 +235,12 @@ Plus_Ast::Plus_Ast(Ast * l, Ast * r, int line)
 	lhs = l;
 	rhs = r;
 	ast_num_child = binary_arity;
-	if(typeid(*rhs)==typeid(number_ast<int>) || typeid(*rhs)==typeid(number_ast<double>)){	
+	if(typeid(*rhs)==typeid(Number_Ast<int>) || typeid(*rhs)==typeid(Number_Ast<double>)){	
 		if(rhs->is_value_zero()){
 			node_data_type = l->get_data_type(); 		
 		}
-	else(typeid(*lhs)==typeid(number_ast<int>) || typeid(*lhs)==typeid(number_ast<double>)){	
+	}
+	else if(typeid(*lhs)==typeid(Number_Ast<int>) || typeid(*lhs)==typeid(Number_Ast<double>)){	
 		if(lhs->is_value_zero()){
 			node_data_type = r->get_data_type(); 
 		}	
@@ -249,7 +250,7 @@ Plus_Ast::Plus_Ast(Ast * l, Ast * r, int line)
 	lineno = line;
 }
 
-void plus_ast::print(ostream & file_buffer)
+void Plus_Ast::print(ostream & file_buffer)
 {
 	//add code here
 	file_buffer<<"\narith: plus\n\tlhs (";
@@ -261,17 +262,18 @@ void plus_ast::print(ostream & file_buffer)
 
 /////////////////////////////////////////////////////////////////
 
-minus_ast::minus_ast(ast * l, ast * r, int line)
+Minus_Ast::Minus_Ast(Ast * l, Ast * r, int line)
 {
 	//add code here
 	lhs = l;
 	rhs = r;
 	ast_num_child = binary_arity;
-	if(typeid(*rhs)==typeid(number_ast<int>) || typeid(*rhs)==typeid(number_ast<double>)){	
+	if(typeid(*rhs)==typeid(Number_Ast<int>) || typeid(*rhs)==typeid(Number_Ast<double>)){	
 		if(rhs->is_value_zero()){
 			node_data_type = l->get_data_type(); 		
 		}
-	else(typeid(*lhs)==typeid(number_ast<int>) || typeid(*lhs)==typeid(number_ast<double>)){	
+	}
+	else if(typeid(*lhs)==typeid(Number_Ast<int>) || typeid(*lhs)==typeid(Number_Ast<double>)){	
 		if(lhs->is_value_zero()){
 			node_data_type = r->get_data_type(); 
 		}	
@@ -281,7 +283,7 @@ minus_ast::minus_ast(ast * l, ast * r, int line)
 	lineno = line;
 }
 
-void minus_ast::print(ostream & file_buffer)
+void Minus_Ast::print(ostream & file_buffer)
 {
 	//add code here
 	file_buffer<<"\narith: minus\n\tlhs (";
@@ -293,17 +295,18 @@ void minus_ast::print(ostream & file_buffer)
 
 //////////////////////////////////////////////////////////////////
 
-mult_ast::mult_ast(ast * l, ast * r, int line)
+Mult_Ast::Mult_Ast(Ast * l, Ast * r, int line)
 {
 	//add code here
 	lhs = l;
 	rhs = r;
 	ast_num_child = binary_arity;
-	if(typeid(*rhs)==typeid(number_ast<int>) || typeid(*rhs)==typeid(number_ast<double>)){	
+	if(typeid(*rhs)==typeid(Number_Ast<int>) || typeid(*rhs)==typeid(Number_Ast<double>)){	
 		if(rhs->is_value_zero()){
 			node_data_type = l->get_data_type(); 		
 		}
-	else(typeid(*lhs)==typeid(number_ast<int>) || typeid(*lhs)==typeid(number_ast<double>)){	
+	}
+	else if(typeid(*lhs)==typeid(Number_Ast<int>) || typeid(*lhs)==typeid(Number_Ast<double>)){	
 		if(lhs->is_value_zero()){
 			node_data_type = r->get_data_type(); 
 		}	
@@ -313,7 +316,7 @@ mult_ast::mult_ast(ast * l, ast * r, int line)
 	lineno = line;
 }
 
-void mult_ast::print(ostream & file_buffer)
+void Mult_Ast::print(ostream & file_buffer)
 {
 	//ADD CODE HERE
 	file_buffer<<"\nArith: MULT\n\tLHS (";
@@ -331,11 +334,12 @@ Divide_Ast::Divide_Ast(Ast * l, Ast * r, int line)
 	lhs = l;
 	rhs = r;
 	ast_num_child = binary_arity;
-	if(typeid(*rhs)==typeid(number_ast<int>) || typeid(*rhs)==typeid(number_ast<double>)){	
+	if(typeid(*rhs)==typeid(Number_Ast<int>) || typeid(*rhs)==typeid(Number_Ast<double>)){	
 		if(rhs->is_value_zero()){
 			node_data_type = l->get_data_type(); 		
 		}
-	else(typeid(*lhs)==typeid(number_ast<int>) || typeid(*lhs)==typeid(number_ast<double>)){	
+	}
+	else if (typeid(*lhs)==typeid(Number_Ast<int>) || typeid(*lhs)==typeid(Number_Ast<double>)){	
 		if(lhs->is_value_zero()){
 			node_data_type = r->get_data_type(); 
 		}	

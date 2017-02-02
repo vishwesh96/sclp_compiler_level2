@@ -39,6 +39,10 @@
 %type <ast> assignment_statement
 %type <ast> variable
 %type <ast> constant
+%type <ast> expression_term
+%type <ast> arith_expression
+%type <ast> operand
+ 
 //ADD CODE HERE
 
 %start program
@@ -255,6 +259,11 @@ declaration:
 	if (NOT_ONLY_PARSE)
 	{
 		//ADD CODE HERE
+		string name = *$2;
+		Data_Type type = int_data_type;
+		pair<Data_Type, string> * declar = new pair<Data_Type, string>(type, name);
+
+		$$ = declar;
 	}
 	}
 |
@@ -263,6 +272,11 @@ declaration:
 	if (NOT_ONLY_PARSE)
 	{
 		//ADD CODE HERE
+		string name = *$2;
+		Data_Type type = double_data_type;
+		pair<Data_Type, string> * declar = new pair<Data_Type, string>(type, name);
+
+		$$ = declar;
 	}
 	}
 ;
@@ -273,6 +287,8 @@ statement_list:
 	if (NOT_ONLY_PARSE)
 	{
 		//ADD CODE HERE
+		Sequence_Ast * statement_list = new Sequence_Ast(get_line_number());
+		$$ = statement_list;
 	}
 	}
 |
@@ -280,8 +296,12 @@ statement_list:
 	{
 	if (NOT_ONLY_PARSE)
 	{
-
 		//ADD CODE HERE
+		Sequence_Ast * statement_list = $1;
+		Ast * assignment_statement = $2; 
+		CHECK_INVARIANT((assignment_statement!= NULL), "The assignement statement  cannot be null");
+		statement_list->ast_push_back(assignment_statement);
+		$$ = statement_list;
 	}
 	}
 ;
@@ -293,11 +313,74 @@ assignment_statement:
 	if (NOT_ONLY_PARSE)
 	{
 		//ADD CODE HERE
+		Ast * lhs = $1;
+		Ast * rhs = $3;
+		Ast * assignment_ast = new Assignment_Ast(lhs,rhs,get_line_number());
+		assignment_ast->check_ast();
+		$$ = assignment_ast; //TODO
 	}
 	}
 ;
 
 arith_expression:
+	operand '+' operand
+	{
+	if (NOT_ONLY_PARSE)
+	{
+		Arihtmetic_Expr_Ast * lhs = $1;
+		Arihtmetic_Expr_Ast * rhs = $3;
+			
+	}
+	}
+|
+	operand '-' operand
+	{
+	if (NOT_ONLY_PARSE)
+	{
+	
+	}
+	}
+|
+	operand '*' operand
+	{
+	if (NOT_ONLY_PARSE)
+	{
+	
+	}
+	}
+|
+	operand '/' operand
+	{
+	if (NOT_ONLY_PARSE)
+	{
+	
+	}
+	}
+|
+	'-' operand %prec UMINUS
+	{
+	if (NOT_ONLY_PARSE)
+	{
+	
+	}
+	}
+|
+	'(' operand ')'
+	{
+	if (NOT_ONLY_PARSE)
+	{
+	
+	}
+	}
+|
+	expression_term
+	{
+	if (NOT_ONLY_PARSE)
+	{
+	
+	}
+	}
+;
 		//ADD RELEVANT CODE ALONG WITH GRAMMAR RULES HERE
                 // SUPPORT binary +, -, *, / operations, unary -, and allow parenthesization
                 // i.e. E -> (E)
@@ -320,6 +403,7 @@ expression_term:
 	if (NOT_ONLY_PARSE)
 	{
 		//ADD CODE HERE
+		$$ = $1; 
 	}
 	}
 |
@@ -328,6 +412,7 @@ expression_term:
 	if (NOT_ONLY_PARSE)
 	{
 		//ADD CODE HERE
+		$$ = $1;
 	}
 	}
 ;
@@ -363,6 +448,9 @@ constant:
 	if (NOT_ONLY_PARSE)
 	{
 		//ADD CODE HERE
+		int number = $1; 
+		Ast * num_ast  = new Number_Ast<int>(number,int_data_type,get_line_number());
+		$$ = num_ast;
 	}
 	}
 |
@@ -371,6 +459,9 @@ constant:
 	if (NOT_ONLY_PARSE)
 	{
 		//ADD CODE HERE
+		double number = $1; 
+		Ast * num_ast  = new Number_Ast<double>(number,double_data_type,get_line_number());
+		$$ = num_ast;
 	}
 	}
 ;
