@@ -242,24 +242,29 @@ Plus_Ast::Plus_Ast(Ast * l, Ast * r, int line)
 		if(rhs->is_value_zero()){
 			node_data_type = l->get_data_type(); 		
 		}
+		else{
+			node_data_type = l->get_data_type();	//todo	
+		}		
 	}
 	else if(typeid(*lhs)==typeid(Number_Ast<int>) || typeid(*lhs)==typeid(Number_Ast<double>)){	
 		if(lhs->is_value_zero()){
 			node_data_type = r->get_data_type(); 
 		}	
+		else{
+			node_data_type = l->get_data_type();	//todo	
+		}		
 	}
 	else 
 		node_data_type = l->get_data_type();	//todo	
-		// std::cout<<node_data_type<<std::endl;
 	lineno = line;
 }
 
 void Plus_Ast::print(ostream & file_buffer)
 {
 	//add code here
-	file_buffer<<"\narith: plus\n\tlhs (";
+	file_buffer<<"\nArith: PLUS\n\tLHS (";
 	lhs->print(file_buffer);
-	file_buffer<<")\nrhs (";
+	file_buffer<<")\nRHS (";
 	rhs->print(file_buffer);
 	file_buffer<<")";
 }
@@ -276,11 +281,17 @@ Minus_Ast::Minus_Ast(Ast * l, Ast * r, int line)
 		if(rhs->is_value_zero()){
 			node_data_type = l->get_data_type(); 		
 		}
+		else{
+			node_data_type = l->get_data_type();	//todo	
+		}		
 	}
 	else if(typeid(*lhs)==typeid(Number_Ast<int>) || typeid(*lhs)==typeid(Number_Ast<double>)){	
 		if(lhs->is_value_zero()){
 			node_data_type = r->get_data_type(); 
 		}	
+		else{
+			node_data_type = l->get_data_type();	//todo	
+		}		
 	}
 	else 
 		node_data_type = l->get_data_type();	//todo	
@@ -290,9 +301,9 @@ Minus_Ast::Minus_Ast(Ast * l, Ast * r, int line)
 void Minus_Ast::print(ostream & file_buffer)
 {
 	//add code here
-	file_buffer<<"\narith: minus\n\tlhs (";
+	file_buffer<<"\nArith: MINUS\n\tLHS (";
 	lhs->print(file_buffer);
-	file_buffer<<")\nrhs (";
+	file_buffer<<")\nRHS (";
 	rhs->print(file_buffer);
 	file_buffer<<")";
 }
@@ -310,15 +321,21 @@ Mult_Ast::Mult_Ast(Ast * l, Ast * r, int line)
 		if(rhs->is_value_zero()){
 			node_data_type = l->get_data_type(); 		
 		}
+		else{
+			node_data_type = l->get_data_type();	//todo	
+		}
 	}
 	else if(typeid(*lhs).name()==typeid(Number_Ast<int>).name() || typeid(*lhs).name()==typeid(Number_Ast<double>).name()){	
 		if(lhs->is_value_zero()){
 			node_data_type = r->get_data_type(); 
 		}	
+		else{
+			node_data_type = l->get_data_type();	//todo	
+		}
 	}
 	else 
 		node_data_type = l->get_data_type();	//todo	
-	std::cout<<node_data_type<<std::endl;
+	
 	lineno = line;
 }
 
@@ -344,11 +361,17 @@ Divide_Ast::Divide_Ast(Ast * l, Ast * r, int line)
 		if(rhs->is_value_zero()){
 			node_data_type = l->get_data_type(); 		
 		}
+		else{
+			node_data_type = l->get_data_type();	//todo	
+		}		
 	}
 	else if (typeid(*lhs).name()==typeid(Number_Ast<int>).name() || typeid(*lhs).name()==typeid(Number_Ast<double>).name()){	
 		if(lhs->is_value_zero()){
 			node_data_type = r->get_data_type(); 
-		}	
+		}
+		else{
+			node_data_type = l->get_data_type();	//todo	
+		}			
 	}
 	else 
 		node_data_type = l->get_data_type();	//todo	

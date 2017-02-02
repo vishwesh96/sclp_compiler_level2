@@ -1,0 +1,19 @@
+Program:
+   Procedure: main, Return Type: void
+      Sequence Ast 
+
+         Asgn:
+            LHS (Name : x)
+            RHS (Num : 3.00)
+         Asgn:
+            LHS (Name : y)
+            RHS (Num : 9.90)
+         Asgn:
+            LHS (Name : perimeter)
+            RHS (
+            Arith: MULT
+               LHS (Num : 2.00)
+               RHS (
+            Arith: PLUS
+               LHS (Name : x)
+               RHS (Name : y)))
