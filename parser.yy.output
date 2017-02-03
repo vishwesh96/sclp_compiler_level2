@@ -1,4 +1,4 @@
-[parser.yy (info)] Line 491: 
+[parser.yy (info)] Line 492: 
 Production Rules
 (rule precedences determined from %prec or 1st terminal between parentheses):
 1: program ->  declaration_list procedure_definition
@@ -38,20 +38,20 @@ Production Rules
 Symbolic Terminal tokens:
        error
        EOF
+   257: INTEGER_NUMBER
+   258: DOUBLE_NUMBER
+   259: NAME
+   260: INTEGER
+   261: FLOAT
+   262: ASSIGN
+   263: VOID
+   264: RETURN
     43: '+'
     45: '-'
     42: '*'
     47: '/'
-   257: UMINUS
+   265: UMINUS
     40: '('
-   258: INTEGER_NUMBER
-   259: NAME
-   260: DOUBLE_NUMBER
-   261: RETURN
-   262: INTEGER
-   263: FLOAT
-   264: ASSIGN
-   265: VOID
     41: ')'
     59: ';'
    123: '{'

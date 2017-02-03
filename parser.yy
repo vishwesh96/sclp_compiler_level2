@@ -19,17 +19,18 @@
 
 //ADD TOKENS HERE
 
+
+%token <integer_value> INTEGER_NUMBER
+%token <float_value> DOUBLE_NUMBER
+%token <string_value> NAME
+%token INTEGER FLOAT
+%token ASSIGN VOID
+%token RETURN
+
 %left '+' '-'
 %left '*' '/'
 %right UMINUS
 %nonassoc '('
-
-%token <integer_value> INTEGER_NUMBER
-%token <string_value> NAME
-%token <float_value> DOUBLE_NUMBER
-%token RETURN INTEGER FLOAT
-%token ASSIGN VOID
-
 
 %type <symbol_table> optional_variable_declaration_list
 %type <symbol_table> variable_declaration_list

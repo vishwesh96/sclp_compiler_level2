@@ -262,7 +262,7 @@ Plus_Ast::Plus_Ast(Ast * l, Ast * r, int line)
 void Plus_Ast::print(ostream & file_buffer)
 {
 	//add code here
-	file_buffer<<"\n"<<setw(23)<<"Arith: ADD\n"<<setw(20)<<"LHS (";
+	file_buffer<<"\n"<<setw(24)<<"Arith: PLUS\n"<<setw(20)<<"LHS (";
 	lhs->print(file_buffer);
 	file_buffer<<")\n"<<setw(20)<<"RHS (";
 	rhs->print(file_buffer);
@@ -301,7 +301,7 @@ Minus_Ast::Minus_Ast(Ast * l, Ast * r, int line)
 void Minus_Ast::print(ostream & file_buffer)
 {
 	//add code here
-	file_buffer<<"\n"<<setw(23)<<"Arith: MINUS\n"<<setw(20)<<"LHS (";
+	file_buffer<<"\n"<<setw(25)<<"Arith: MINUS\n"<<setw(20)<<"LHS (";
 	lhs->print(file_buffer);
 	file_buffer<<")\n"<<setw(20)<<"RHS (";
 	rhs->print(file_buffer);
@@ -342,7 +342,7 @@ Mult_Ast::Mult_Ast(Ast * l, Ast * r, int line)
 void Mult_Ast::print(ostream & file_buffer)
 {
 	//ADD CODE HERE
-	file_buffer<<"\n"<<setw(23)<<"Arith: MULT\n"<<setw(20)<<"LHS (";
+	file_buffer<<"\n"<<setw(24)<<"Arith: MULT\n"<<setw(20)<<"LHS (";
 	lhs->print(file_buffer);
 	file_buffer<<")\n"<<setw(20)<<"RHS (";
 	rhs->print(file_buffer);

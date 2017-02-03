@@ -12,12 +12,12 @@ fl (((({number})\.({number}))|(\.{number})|({number}\.))(([eE][+-]?{number})?))|
 %%
 //ADD YOUR CODE HERE
 
-
-"int"	{
-		// printf("int found\n");
-		store_token_name("INTEGER");
-		return Parser::INTEGER;
+"void"	{
+		// printf("void found\n");
+		store_token_name("VOID");
+		return Parser::VOID;	
 	}
+
 
 "float"	{
 		// printf("float found\n");
@@ -32,11 +32,12 @@ fl (((({number})\.({number}))|(\.{number})|({number}\.))(([eE][+-]?{number})?))|
 		return Parser::ASSIGN;
 	}
 
-"void"	{
-		// printf("void found\n");
-		store_token_name("VOID");
-		return Parser::VOID;	
+"int"	{
+		// printf("int found\n");
+		store_token_name("INTEGER");
+		return Parser::INTEGER;
 	}
+	
 
 "return" {
 		// printf("return found\n");
