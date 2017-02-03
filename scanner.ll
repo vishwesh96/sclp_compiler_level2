@@ -39,11 +39,11 @@ fl (((({number})\.({number}))|(\.{number})|({number}\.))(([eE][+-]?{number})?))|
 	}
 	
 
-"return" {
-		// printf("return found\n");
-		store_token_name("RETURN");
-		return Parser::RETURN;
-	 }
+// "return" {
+// 		// printf("return found\n");
+// 		store_token_name("RETURN");
+// 		return Parser::RETURN;
+// 	 }
 			
 {identifier} {
 		// std::cout<<"identifier found "<<matched()<<endl;

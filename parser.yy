@@ -25,7 +25,7 @@
 %token <string_value> NAME
 %token INTEGER FLOAT
 %token ASSIGN VOID
-%token RETURN
+//%token RETURN
 
 %left '+' '-'
 %left '*' '/'
