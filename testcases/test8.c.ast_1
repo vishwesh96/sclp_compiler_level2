@@ -1,0 +1,9 @@
+Program:
+   Procedure: main, Return Type: void
+      Sequence Ast 
+
+         Asgn:
+            LHS (Name : a)
+            RHS (
+            Arith: UMINUS
+               LHS (Num : 3))

@@ -95,9 +95,9 @@ bool Assignment_Ast::check_ast()
 void Assignment_Ast::print(ostream & file_buffer)
 {
 	//ADD CODE HERE
-	file_buffer<<"\nAsign:\n\tLHS (";
+	file_buffer<<"\n"<<setw(15)<<"Asgn:\n"<<setw(17)<<"LHS (";
 	lhs->print(file_buffer);
-	file_buffer<<")\n\tRHS (";	
+	file_buffer<<")\n"<<setw(17)<<"RHS (";	
 	rhs->print(file_buffer);
 	file_buffer<<")";
 }
@@ -262,9 +262,9 @@ Plus_Ast::Plus_Ast(Ast * l, Ast * r, int line)
 void Plus_Ast::print(ostream & file_buffer)
 {
 	//add code here
-	file_buffer<<"\nArith: PLUS\n\tLHS (";
+	file_buffer<<"\n"<<setw(23)<<"Arith: ADD\n"<<setw(20)<<"LHS (";
 	lhs->print(file_buffer);
-	file_buffer<<")\nRHS (";
+	file_buffer<<")\n"<<setw(20)<<"RHS (";
 	rhs->print(file_buffer);
 	file_buffer<<")";
 }
@@ -301,9 +301,9 @@ Minus_Ast::Minus_Ast(Ast * l, Ast * r, int line)
 void Minus_Ast::print(ostream & file_buffer)
 {
 	//add code here
-	file_buffer<<"\nArith: MINUS\n\tLHS (";
+	file_buffer<<"\n"<<setw(23)<<"Arith: MINUS\n"<<setw(20)<<"LHS (";
 	lhs->print(file_buffer);
-	file_buffer<<")\nRHS (";
+	file_buffer<<")\n"<<setw(20)<<"RHS (";
 	rhs->print(file_buffer);
 	file_buffer<<")";
 }
@@ -342,9 +342,9 @@ Mult_Ast::Mult_Ast(Ast * l, Ast * r, int line)
 void Mult_Ast::print(ostream & file_buffer)
 {
 	//ADD CODE HERE
-	file_buffer<<"\nArith: MULT\n\tLHS (";
+	file_buffer<<"\n"<<setw(23)<<"Arith: MULT\n"<<setw(20)<<"LHS (";
 	lhs->print(file_buffer);
-	file_buffer<<")\nRHS (";
+	file_buffer<<")\n"<<setw(20)<<"RHS (";
 	rhs->print(file_buffer);
 	file_buffer<<")";
 }
@@ -381,9 +381,9 @@ Divide_Ast::Divide_Ast(Ast * l, Ast * r, int line)
 void Divide_Ast::print(ostream & file_buffer)
 {
 	//ADD CODE HERE
-	file_buffer<<"\nArith: DIV\n\tLHS (";
+	file_buffer<<"\n"<<setw(23)<<"Arith: DIV\n"<<setw(20)<<"LHS (";
 	lhs->print(file_buffer);
-	file_buffer<<")\nRHS (";
+	file_buffer<<")\n"<<setw(20)<<"RHS (";
 	rhs->print(file_buffer);
 	file_buffer<<")";
 }
@@ -403,7 +403,7 @@ UMinus_Ast::UMinus_Ast(Ast * l, Ast * r, int line)
 void UMinus_Ast::print(ostream & file_buffer)
 {
 	//ADD CODE HERE
-	file_buffer<<"\nArith: UMNIUS\n\tLHS (";
+	file_buffer<<"\n"<<setw(26)<<"Arith: UMINUS\n"<<setw(20)<<"LHS (";
 	lhs->print(file_buffer);
 	file_buffer<<")";
 }
